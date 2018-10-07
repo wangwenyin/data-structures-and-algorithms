@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*
+     自定义链表结构类型
+     */
+    //结点 构造函数
+    function Node(data) {
+        this.data = data;
+        this.next = null;
+        this.pre = null;
+    }
+
+    //链表 构造函数
+    function Link() {
+        this.head = null;   //表头    当前没有一个Node对象
+        this.size = 0;      //节点数  当前没有一个Node对象
+        this.foot = null;   //表尾
+    }
+
+    //向表尾添加元素
+    Link.prototype.add = function (data) {
+        this.size += 1; //链表的长度增加
+        var newNode = new Node(data);   //新建元素
+        //如果链表中没有一个节点
+        if (this.head == null) {
+            this.head = newNode;
+            return;
+        }
+        var tempNode = this.head; //初始化指针
+        while (tempNode.next != null){  //通过指针找到表尾
+            tempNode = tempNode.next;
+        }
+        tempNode.next = newNode; //向表尾添加元素
+    };
+
+    //获得第pos个位置的数据
+    Link.prototype.getData = function (pos) {
+        if (pos >= this.size || pos < 0){   //pos 不合理则直接返回
+            return null;
+        }
+        else {
+            tempNode = this.head;
+            for (i = 0; i < pos; i++){
+                tempNode = tempNode.next;
+            }
+            return tempNode.data;
+        }
+    };
+
+    //删除指定位置的元素
+    Link.prototype.remove = function (pos) {
+        if (pos >= this.size || pos < 0){
+            return null;
+        }
+        this.size--;
+        tempNode = this.head;
+        if (pos == 0) {
+            this.head = this.head.next;
+            return this.head;
+        }
+        for (i = 0; i < pos - 1; i++) {
+            tempNode = tempNode.next;
+        }
+        tempNode.next = tempNode.next.next; //精髓
+        return tempNode.next;
+    };
+
+    //打印
+    Link.prototype.print = function () {
+        document.write("elements in list as follows: <br>");
+        tempNode = this.head;
+        //从第一个元素开始遍历整个链表
+        while (tempNode != null) {
+            document.write(tempNode.data + " ");
+            tempNode = tempNode.next;
+        }
+        document.write("<br>");
+    };
+
+    /*
+     测试
+     */
+    var link = new Link();
+    var array = new Array(1, 2, 3, 4, 5, 6);
+    for (i = 0; i < array.length; i++) {
+        link.add(array[i]);
+    }
+    link.print();
+    document.write("now remove action: <br>");
+    link.remove(5);
+    link.print();
+    document.write("new size after Remove list[5]:  " + link.size);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="btn">排序</button>
+
+</body>
+<script src="03_select_sort.js"></script>
+<script>
+    var arr = [1,0,7,6,3,4,9,8];
+    console.log('初始数据：', arr);
+
+    document.getElementById('btn').onclick = function () {
+        selectSort( arr );
+        console.log('选择排序：', arr);
+    }
+</script>
+</html>

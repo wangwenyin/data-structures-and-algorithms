@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="btn">排序</button>
+
+</body>
+<script src="01_bubble_sort.js"></script>
+<script>
+    var arr = [17, 3, 25, 14, 20, 9];
+    console.log('初始数据：', arr);
+
+    document.getElementById('btn').onclick = function () {
+        bubbleSort( arr );
+        console.log('冒泡排序：', arr);
+    }
+</script>
+</html>
